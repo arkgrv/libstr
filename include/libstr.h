@@ -12,6 +12,9 @@ typedef struct string_t_ *string_t;
 
 /**
  * Construct a new empty string.
+ * 
+ * @return new string if creation is successful,
+ * otherwise NULL.
 */
 string_t new_string();
 
@@ -19,7 +22,16 @@ string_t new_string();
  * Construct a new empty string with specific length.
  * 
  * @param length string pre-allocation length.
+ * @return new string if creation is successful,
+ * otherwise NULL.
 */
 string_t new_string_sz(size_t length);
+
+/**
+ * Delete string from memory.
+ * 
+ * @return null pointer.
+*/
+string_t delete_string();
 
 #endif
