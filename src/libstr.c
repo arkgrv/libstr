@@ -69,3 +69,24 @@ string_t new_string_sz(size_t length)
 
     return str;
 }
+
+/**
+ * Delete string from memory.
+ * 
+ * @param str the string to delete.
+ * @return NULL pointer.
+*/
+string_t delete_string(string_t str)
+{
+    if (str == NULL)
+        return NULL;
+
+    if (str->data == str->small_data) {
+        free(str);
+        return NULL;
+    }
+
+    free(str->data);
+    free(str);
+    return NULL;
+}

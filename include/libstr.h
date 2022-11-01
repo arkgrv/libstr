@@ -31,7 +31,7 @@ string_t new_string_sz(size_t length);
  * Delete string from memory.
  * 
  * @param str the string to delete.
- * @return null pointer.
+ * @return NULL pointer.
 */
 string_t delete_string(string_t str);
 
