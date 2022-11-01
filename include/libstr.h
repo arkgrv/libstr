@@ -28,6 +28,14 @@ string_t new_string();
 string_t new_string_sz(size_t length);
 
 /**
+ * Construct a new string with the value passed as argument.
+ * 
+ * @param c_str value of string.
+ * @return new string object with assigned value.
+*/
+string_t new_string_cstr(const char *c_str);
+
+/**
  * Delete string from memory.
  * 
  * @param str the string to delete.

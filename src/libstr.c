@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SMALL_STR_BUF 25
+#define SMALL_STR_BUF 25 + 1
 
 /**
  * Implementation of string struct
@@ -47,13 +47,10 @@ string_t new_string()
 string_t new_string_sz(size_t length)
 {
     const size_t cap = length + 1;
-
-    if (length < SMALL_STR_BUF)
-        return new_string();
+    if (length < SMALL_STR_BUF - 1) return new_string();
 
     string_t str = (struct string_t_*) malloc(sizeof(struct string_t_));
-    if (str == NULL)
-        return NULL;
+    if (str == NULL) return NULL;
 
     // Setup everything
     str->data = (char*) malloc(sizeof(char) * cap);
@@ -66,6 +63,30 @@ string_t new_string_sz(size_t length)
 
     str->capacity = cap;
     str->length = 0;
+
+    return str;
+}
+
+/**
+ * Construct a new string with the value passed as argument.
+ * 
+ * @param c_str value of string.
+ * @return new string object with assigned value.
+*/
+string_t new_string_cstr(const char *c_str)
+{
+    string_t str;
+
+    if (strlen(c_str) <= SMALL_STR_BUF - 1) {
+        str = new_string();
+        if (str == NULL) return NULL;
+        strncpy(str->data, c_str, strlen(c_str));
+        return str;
+    }
+
+    str = new_string_sz(strlen(c_str));
+    if (str == NULL) return NULL;
+    strncpy(str->data, c_str, strlen(c_str));
 
     return str;
 }
